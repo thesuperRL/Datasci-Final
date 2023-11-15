@@ -34,8 +34,8 @@ def get_basic_model():
   model = tf.keras.Sequential([
     #normalizer,
     Dense(4, activation='relu'),
-    Dense(8, activation='relu'),
     Dropout(0.125),
+    Dense(8, activation='relu'),
     Dense(1, activation='relu'),
   ])
 
