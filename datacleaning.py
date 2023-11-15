@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 
+#overall a lot of places here where I used Pandas Documentation
+
 rawCrimes = pd.read_csv("Crimes.csv")
 rawPoverty = pd.read_csv("Poverty.csv")
 rawUnemployment = pd.read_csv("unemployment.csv")
@@ -8,6 +10,8 @@ rawArea = pd.read_csv("area.csv")
 
 rawArea['year'] = 2010
 
+
+# help from stack overflow
 rawAreaRepeat=rawArea.copy()
 for i in range(1,14):
     rawArea['year']=2009+i
@@ -49,6 +53,7 @@ cPUA.drop(['caveats',
           "state",
           "population",], axis=1, inplace=True)
 
+#help from stack overflow
 cPUA = cPUA[[c for c in cPUA if c not in ['crime_rate']] 
        + ['crime_rate']]
 
