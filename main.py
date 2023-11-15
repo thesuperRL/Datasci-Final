@@ -7,6 +7,7 @@ from tensorflow.python.keras.layers import Dense, Dropout
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 import time
+import pandas as pd
 
 x = tf.ones((50, 10))
 
