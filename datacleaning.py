@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 rawCrimes = pd.read_csv("Crimes.csv")
 rawPoverty = pd.read_csv("Poverty.csv")
@@ -37,6 +38,7 @@ cPU = pd.merge(crimesPoverty, rawUnemployment,  how='left', left_on=['year','sta
 cPUA = pd.merge(cPU, rawAreaRepeat,  how='left', left_on=['year','state'], right_on = ['year','state'])
 
 cPUA['pop_density_sq_mile'] = cPUA["population"]/cPUA['area_sq_mile']
+cPUA['pop_log'] = np.log(cPUA['population'])
 
 cPUA.drop(['caveats',
           "state_abbr",
@@ -44,10 +46,14 @@ cPUA.drop(['caveats',
           "unemployment_number",
           "employment_percent",
           "area_sq_mile",
-          ], axis=1, inplace=True)
+          "state",
+          "population",], axis=1, inplace=True)
 
+cPUA = cPUA[[c for c in cPUA if c not in ['crime_rate']] 
+       + ['crime_rate']]
 
 cPUA.drop_duplicates(keep='first', inplace=True)
+cPUA.dropna(inplace=True)
 
 print(cPUA)
 
